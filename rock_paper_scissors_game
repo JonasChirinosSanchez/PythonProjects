@@ -1,0 +1,29 @@
+import random
+
+choices = ["rock", "paper", "scissors"] #list of choices
+
+computer = random.choice(choices) #the computer will randomly select an item from the list
+player = None  #initializes the player variable to allow input in the next few lines of code
+
+while player not in choices:
+    player = input("Rock, paper, or scissors: ").lower() #makes the input question repeat itself until player enters a vaild item from choices, the lower part at the end changes input like Rock to rock, helpful!
+
+print("Computer: " +computer)   #prints the computer's choice
+print("Player: " +player)    #prints the player's choice
+
+if player == computer:      #all the situations that could happen in the game, including wins, lossses, and draws
+    print("Tie!")
+elif player == "rock" and computer == "paper":
+    print("You Lose :(")
+elif player == "rock" and computer == "scissors":
+    print("You win!")
+elif player == "paper" and computer == "scissors":
+    print("You Lose :(")
+elif player == "paper" and computer == "rock":
+    print("You win!")
+elif player == "scissors" and computer == "rock":
+    print("You lose :(")
+elif player == "scissors" and computer == "paper":
+    print("You win!")
+else:
+    print("The heck?!") #just for fun, impossible to see this message without altering the code
