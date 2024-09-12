@@ -1,0 +1,28 @@
+#Simple Calculator (+, -, *, /)
+
+try:
+    operator = input("Add (+), Subtract (-), Multiply (*), Divide (/): ")
+    num_1 = float(input("Enter the first number: "))
+    num_2 = float(input("Enter the second number: "))
+
+    if operator == "+":
+        result = num_1 + num_2
+        print(result)
+    elif operator == "-":
+        result = num_1 - num_2
+        print(result)
+    elif operator == "*":
+        result = num_1 * num_2
+        print(result)
+    elif operator == "/":
+        result = num_1 / num_2
+        print(result)
+
+except ZeroDivisionError:
+    print("Can't divide by zero idiot")
+except ValueError:
+    print("Enter a number moron")
+except Exception:
+    print("What did you even do wrong :(")
+finally:
+    print("Thanks for using Simple Calculator!")
