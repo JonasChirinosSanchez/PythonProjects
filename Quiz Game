@@ -40,21 +40,17 @@ def display_score(correct_guesses, guesses):
     print()
 
     score = (correct_guesses/len(questions))*100
-    print(round(score, 2), "%")
+    print("Your score: ", round(score, 2), "%")
 
 
 def play_again():
-    replay = input("Play again? (y/n): ").lower()
-    replay_choice = ["y", "n"]
+    replay = input("Wanna play again: (y/n): ").lower()
 
-    try:
-        while replay not in replay_choice:
-            play_again()
+    while replay == "y":
+        return True
+    while replay == "n":
+        return False
 
-        while replay == "y":
-            new_game()
-    except ValueError:
-        print("Enter y or n: ")
 
 questions = {"1 + 1 = ": "A",
              "Is the Earth Round: ": "B",
@@ -63,4 +59,8 @@ questions = {"1 + 1 = ": "A",
 options = ["A. 2", "B. 3", "C. Cheese"], ["A. No", "B. Yes", "C. Cheese"], ["A. Cars", "B. Planes", "C. Cheese"]
 
 new_game()
-play_again()
+
+while play_again():
+    new_game()
+
+print("byeeeee")
