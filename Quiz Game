@@ -1,0 +1,63 @@
+def new_game():  #this is the actual game as a function
+    guesses = []    #blank list of the player's guesses
+    correct_guesses = 0   #will go up as player answer correctly
+    question_num = 1    #identifies what question to pull up
+
+    for key in questions:
+        print("----------------")
+        print(key)    #prints the questions, AKA the "key" in the dictionary from lines 56-58
+        for i in options[question_num-1]:    #indexing always start 0, so 1-1 = 0, the first item in the options dictionary, line 60
+            print(i)
+        guess = input("Enter (A, B, C): ").upper()   #makes any letter uppercase, notice there is no exception here because anything that is not the correct answer is wrong
+        guesses.append(guess)    #adds the player's guess to the empty guesses list 
+
+        correct_guesses += check_answer(questions.get(key), guess)  
+        question_num += 1   #changes the question to the next question
+
+    display_score(correct_guesses, guesses) 
+
+def check_answer(answer, guess):
+    if answer == guess:
+        print("CORRECT!")
+        return 1
+    elif answer != guess:
+        print("WRONG!")
+        return 0
+
+def display_score(correct_guesses, guesses):
+    print("RESULTS")
+
+    print("Answers: ", end=" ")
+    print()
+    for i in questions:
+        print(questions.get(i), end=" ")
+    print()
+
+    print("Guesses: ", end=" ")
+    print()
+    for i in guesses:
+        print(i, end=" ")
+    print()
+
+
+def play_again():
+    replay = input("Play again? (y/n): ").lower()
+    replay_choice = ["y", "n"]
+
+    try:
+        while replay not in replay_choice:
+            play_again()
+
+        while replay == "y":
+            new_game()
+    except ValueError:
+        print("Enter y or n: ")
+
+questions = {"1 + 1 = ": "A",
+             "Is the Earth Round: ": "B",
+             "What does a cartoon mouse eat: ": "C"}
+
+options = ["A. 2", "B. 3", "C. Cheese"], ["A. No", "B. Yes", "C. Cheese"], ["A. Cars", "B. Planes", "C. Cheese"]
+
+new_game()
+play_again()
