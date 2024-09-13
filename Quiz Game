@@ -1,20 +1,20 @@
-def new_game():  #this is the actual game as a function
-    guesses = []    #blank list of the player's guesses
-    correct_guesses = 0   #will go up as player answer correctly
-    question_num = 1    #identifies what question to pull up
+def new_game():
+    guesses = []
+    correct_guesses = 0
+    question_num = 1
 
     for key in questions:
         print("----------------")
-        print(key)    #prints the questions, AKA the "key" in the dictionary from lines 56-58
-        for i in options[question_num-1]:    #indexing always start 0, so 1-1 = 0, the first item in the options dictionary, line 60
+        print(key)
+        for i in options[question_num-1]:
             print(i)
-        guess = input("Enter (A, B, C): ").upper()   #makes any letter uppercase, notice there is no exception here because anything that is not the correct answer is wrong
-        guesses.append(guess)    #adds the player's guess to the empty guesses list 
+        guess = input("Enter (A, B, C): ").upper()
+        guesses.append(guess)
 
-        correct_guesses += check_answer(questions.get(key), guess)  
-        question_num += 1   #changes the question to the next question
+        correct_guesses += check_answer(questions.get(key), guess)
+        question_num += 1
 
-    display_score(correct_guesses, guesses) 
+    display_score(correct_guesses, guesses)
 
 def check_answer(answer, guess):
     if answer == guess:
@@ -38,6 +38,9 @@ def display_score(correct_guesses, guesses):
     for i in guesses:
         print(i, end=" ")
     print()
+
+    score = (correct_guesses/len(questions))*100
+    print(round(score, 2), "%")
 
 
 def play_again():
